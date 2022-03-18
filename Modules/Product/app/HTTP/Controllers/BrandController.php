@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Brand;
 
 class BrandController extends Controller
 {
@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::brands.index');
     }
 
     /**

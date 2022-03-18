@@ -37,6 +37,7 @@ class CategoreComponent extends Component
         $cat->category_id = $this->category_id;
         $cat->save();
         session()->flash('update', 'Category successfully update.');
+        $this->clear();
     }
 
     function delete($main_id)
@@ -51,5 +52,11 @@ class CategoreComponent extends Component
         $this->main_id = $cat->id;
         $this->name = $cat->name;
         $this->category_id = $cat->category_id;
+    }
+
+    function clear()
+    {
+        $this->name = null;
+        $this->logo = null;
     }
 }

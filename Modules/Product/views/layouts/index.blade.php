@@ -22,6 +22,32 @@
     <link rel="stylesheet" href="{{ asset('css/demo_1/style.css') }}">
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <style>
+        .button_outer {
+            border-radius: 30px;
+            text-align: center;
+            height: 50px;
+            width: 200px;
+            padding-top: 13px;
+            margin-top: 15px;
+            margin-left: 65px;
+            padding-left: 35px;
+            display: inline-block;
+            transition: .2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn_upload input {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 105%;
+            cursor: pointer;
+            opacity: 0;
+        }
+    </style>
     @livewireStyles()
 </head>
 
@@ -211,6 +237,12 @@
                             <span class="menu-title">Categories</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('brand') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Brands</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- partial -->
@@ -254,7 +286,7 @@
     <!-- Custom js for this page-->
     <script src="{{ asset('js/demo_1/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
-    <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script>
+    {{-- <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script> --}}
     @livewireScripts()
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Product\app\HTTP\Controllers\BrandController;
 use Modules\Product\app\HTTP\Controllers\CategoryController;
 
 
@@ -22,3 +23,4 @@ Route::get('/index', function () {
 })->name('dash');
 
 Route::get('/category', [CategoryController::class , "index"])->name('category');
+Route::get('/brand', [BrandController::class , "index"])->name('brand');
