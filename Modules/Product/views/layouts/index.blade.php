@@ -28,15 +28,16 @@
             text-align: center;
             height: 50px;
             width: 200px;
-            padding-top: 13px;
-            margin-top: 15px;
+            padding-top: 11px;
+            margin-top: -10px;
             margin-left: 65px;
-            padding-left: 35px;
+            padding-left: 10px;
             display: inline-block;
             transition: .2s;
             position: relative;
             overflow: hidden;
         }
+
         .btn_upload input {
             position: absolute;
             width: 100%;
@@ -47,6 +48,7 @@
             cursor: pointer;
             opacity: 0;
         }
+
     </style>
     @livewireStyles()
 </head>
@@ -241,6 +243,24 @@
                         <a class="nav-link" href="{{ route('brand') }}">
                             <i class="menu-icon typcn typcn-shopping-bag"></i>
                             <span class="menu-title">Brands</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customer') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Customer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('supplier') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Supplier</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('option') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Option</span>
                         </a>
                     </li>
                 </ul>

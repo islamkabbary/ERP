@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Supplier;
 
 class SupplierController extends Controller
 {
@@ -14,7 +14,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::suppliers.index');
     }
 
     /**

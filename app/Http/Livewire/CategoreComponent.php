@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use Modules\Product\app\Entities\Category;
 
 class CategoreComponent extends Component
 {
+    use WithPagination;
+
     public $name, $category_id, $main_id;
 
     protected $rules = [

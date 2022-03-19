@@ -12,19 +12,21 @@
             {{ session('update') }}
         </div>
     @endif
-    <div class="row page-title-header">
-        <div class="col-5">
+    <div class="row mt-4">
+        <div class="col-sm-3">
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Name</label>
+                <label class="col-sm-3 col-form-label text-success text-capitalize">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" wire:model='name' />
+                    <input placeholder="Category Name" type="text" class="form-control rounded" wire:model='name' />
                 </div>
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+        </div>
+        <div class="col-sm-5">
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Sub Category</label>
+                <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Sub Category</label>
                 <div class="col-sm-9">
                     <select class="form-control" wire:model="category_id">
                         <option value="">Select Category</option>
@@ -37,40 +39,42 @@
                     @error('category_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <a type="button" wire:click="save" class="btn btn-success btn-block mt-4"> Save </a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-7 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Category_id</th>
-                                <th scope="col">&nbsp;</th>
+        <div class="col-sm-2">
+            <a type="button" wire:click="save" class="btn bg-success btn-block rounded"> Save </a>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="text-center text-capitalize">
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category_id</th>
+                            <th scope="col">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse (\Modules\Product\app\Entities\Category::all() as $cat)
+                            <tr class="text-center">
+                                <th scope="row">{{ $cat->id }}</th>
+                                <td>{{ $cat->name }}</td>
+                                <td>{{ $cat->parent ? $cat->parent->name : null}}</td>
+                                <td><a class='btn btn-success btn-sm text-light' title='edit  {{ $cat->name }}'
+                                        wire:click='edit({{ $cat->id }})' role='button'>Edit</a>
+                                    <a class='btn btn-danger btn-sm text-light' title='delete  {{ $cat->name }}'
+                                        wire:click='delete({{ $cat->id }})' role='button'>X</a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @forelse (\Modules\Product\app\Entities\Category::all() as $cat)
-                                <tr>
-                                    <th scope="row">{{ $cat->id }}</th>
-                                    <td>{{ $cat->name }}</td>
-                                    <td>{{ $cat->category_id }}</td>
-                                    <td><a class='btn btn-success btn-sm text-light' title='edit  {{ $cat->name }}'
-                                            wire:click='edit({{ $cat->id }})' role='button'>Edit</a>
-                                        <a class='btn btn-danger btn-sm text-light' title='delete  {{ $cat->name }}'
-                                            wire:click='delete({{ $cat->id }})' role='button'>X</a>
-                                    </td>
-                                </tr>
-                            @empty
-                                <td colspan="3" class="text-primary text-center"> There is no Category yet</td>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                        @empty
+                            <td colspan="4" class="text-success text-center"> There is no Category yet</td>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

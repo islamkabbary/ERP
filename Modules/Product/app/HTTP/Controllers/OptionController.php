@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Option;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Option;
 
 class OptionController extends Controller
 {
@@ -14,7 +14,7 @@ class OptionController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::option.index');
     }
 
     /**

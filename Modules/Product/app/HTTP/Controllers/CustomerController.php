@@ -1,11 +1,12 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Custmor;
-use Illuminate\Http\Request;
 
-class CustmorController extends Controller
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Customer;
+
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class CustmorController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::customers.index');
     }
 
     /**
@@ -41,10 +42,10 @@ class CustmorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Custmor  $custmor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Custmor $custmor)
+    public function show(Customer $customer)
     {
         //
     }
@@ -52,10 +53,10 @@ class CustmorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Custmor  $custmor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Custmor $custmor)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -64,10 +65,10 @@ class CustmorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Custmor  $custmor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Custmor $custmor)
+    public function update(Request $request, Customer $customer)
     {
         //
     }
@@ -75,10 +76,10 @@ class CustmorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Custmor  $custmor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Custmor $custmor)
+    public function destroy(Customer $customer)
     {
         //
     }
