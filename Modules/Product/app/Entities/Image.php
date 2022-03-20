@@ -10,10 +10,11 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'imageable_id',
-        'imageable_type',
-        'path',
-        'type',
+        'imageable_id','imageable_type','path','type',
+    ];
+
+    protected $cast = [
+        'imageable_id' => 'integer',
     ];
 
     public function imageable()

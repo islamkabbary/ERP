@@ -1,7 +1,7 @@
 @extends('Product::layouts.index')
 @section('header')
-    All Customers Table
+    All Products Table
 @endsection
 @section('dashboard-layout')
-    @livewire('customer-component')
+    @livewire('product-component')
 @endsection

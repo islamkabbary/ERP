@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('total');
             $table->enum('type',['cash','installment']);
-            $table->foreignId('custmor_id')->constrained('custmors');
+            $table->foreignId('custmor_id')->constrained('customers');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

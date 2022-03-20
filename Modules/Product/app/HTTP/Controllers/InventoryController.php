@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Inventory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Inventory;
 
 class InventoryController extends Controller
 {
@@ -14,7 +14,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::inventory.index');
     }
 
     /**

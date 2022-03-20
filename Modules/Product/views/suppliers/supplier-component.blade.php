@@ -66,8 +66,8 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Address</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" wire:model='adress' />
-                    @error('adress')
+                    <input type="text" class="form-control" wire:model='addres' />
+                    @error('addres')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <a type="button" wire:click="save" class="btn btn-success btn-block mt-3">Save</a>
@@ -87,7 +87,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">email</th>
                                 <th scope="col">phone</th>
-                                <th scope="col">address</th>
+                                <th scope="col">addres</th>
                                 <th scope="col">company_name</th>
                                 <th scope="col">&nbsp;</th>
                             </tr>
@@ -99,7 +99,7 @@
                                     <td>{{ $supplier->name }}</td>
                                     <td>{{ $supplier->email }}</td>
                                     <td>{{ $supplier->phone }}</td>
-                                    <td>{{ $supplier->adress}}</td>
+                                    <td>{{ $supplier->addres}}</td>
                                     <td>{{ $supplier->company_name }}</td>
                                     <td><a class='btn btn-success btn-sm text-light'
                                             title='edit  {{ $supplier->name }}'

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->string('dis');
             $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('brand_id')->constrained('brands');
             $table->timestamps();
         });
@@ -27,6 +28,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      *
+     * 
      * @return void
      */
     public function down()

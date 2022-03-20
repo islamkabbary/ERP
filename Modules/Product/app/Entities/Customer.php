@@ -10,6 +10,6 @@ class Customer extends Model
     use HasFactory;
 
     protected $filablle = [
-        'adress'
+        'name','email','addres','phone','company_name'
     ];
 }

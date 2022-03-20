@@ -234,6 +234,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Product</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('category') }}">
                             <i class="menu-icon typcn typcn-shopping-bag"></i>
                             <span class="menu-title">Categories</span>
@@ -261,6 +267,12 @@
                         <a class="nav-link" href="{{ route('option') }}">
                             <i class="menu-icon typcn typcn-shopping-bag"></i>
                             <span class="menu-title">Option</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('inventory') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Inventory</span>
                         </a>
                     </li>
                 </ul>

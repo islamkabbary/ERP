@@ -28,7 +28,7 @@ class CustomerComponent extends Component
     {
         return view('Product::customers.customer-component');
     }
-       
+    
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [

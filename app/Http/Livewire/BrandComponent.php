@@ -16,7 +16,7 @@ class BrandComponent extends Component
 
     protected $rules = [
         'name' => 'required|max:25',
-        'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
     public function render()

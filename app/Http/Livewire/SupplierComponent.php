@@ -10,7 +10,7 @@ class SupplierComponent extends Component
 {
     use WithPagination;
 
-    public $name , $company_name , $email , $adress , $phone ;
+    public $name , $company_name , $email , $addres , $phone ;
     public $supplier_id;
 
     protected function rules()
@@ -19,7 +19,7 @@ class SupplierComponent extends Component
             'name'=> 'required|string',
             'company_name' => 'required',
             'email'=> 'required|unique:suppliers,email',
-            'adress' => 'required',
+            'addres' => 'required',
             'phone' => 'required|unique:suppliers,phone|max:20',
         ];
     }
@@ -35,7 +35,7 @@ class SupplierComponent extends Component
             'phone' => 'nullable|unique:suppliers,phone|max:20',
             'name'=> 'nullable|string',
             'company_name' => 'nullable',
-            'adress' => 'nullable',
+            'addres' => 'nullable',
         ]);
     }
 
@@ -51,7 +51,7 @@ class SupplierComponent extends Component
         $supplier->name = $this->name;
         $supplier->company_name = $this->company_name;
         $supplier->email = $this->email;
-        $supplier->adress = $this->adress;
+        $supplier->addres = $this->addres;
         $supplier->phone = $this->phone;
         $supplier->save();
         session()->flash('update', 'Supplier successfully update.');
@@ -71,7 +71,7 @@ class SupplierComponent extends Component
         $this->name = $supplier->name;
         $this->company_name = $supplier->company_name;
         $this->email = $supplier->email;
-        $this->adress = $supplier->adress;
+        $this->addres = $supplier->addres;
         $this->phone = $supplier->phone;
     }
 
@@ -80,7 +80,7 @@ class SupplierComponent extends Component
         $this->name = null;
         $this->company_name = null;
         $this->email = null;
-        $this->adress = null;
+        $this->addres = null;
         $this->phone = null;
     }
 }

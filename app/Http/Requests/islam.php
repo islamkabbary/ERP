@@ -28,7 +28,7 @@ class islam extends FormRequest
             'name'=> 'required|string',
             'company_name'=> 'required',
             'phone' => 'required|max:20',
-            'product_id' => 'required|integer|exists:product,id',
+            'product_id' => 'required|integer|exists:products,id'.request()->segment(3) . ',id',
         ];
     }
 }

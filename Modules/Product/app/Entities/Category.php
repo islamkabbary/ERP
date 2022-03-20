@@ -12,11 +12,11 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name' , "category_id"
     ];
 
     protected $cast = [
-        'category_id'
+        'category_id' => "integer"
     ];
 
     
