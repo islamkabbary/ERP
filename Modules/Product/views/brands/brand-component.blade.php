@@ -59,8 +59,7 @@
                                     <td>{{ $brand->name }}</td>
                                     <td>
                                         <img width="50" src="{{ url('storage/' . $brand->image->path) }}"
-                                            class="img-fluid" alt="">
-                                        {{-- {{$brand->image}} --}}
+                                            class="img-fluid" alt="Brand Logo">
                                     <td><a class='btn btn-success btn-sm text-light' title='edit  {{ $brand->name }}'
                                             wire:click='edit({{ $brand->id }})' role='button'>Edit</a>
                                         <a class='btn btn-danger btn-sm text-light'

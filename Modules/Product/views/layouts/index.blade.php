@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.addons.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"> --}}
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -47,6 +48,19 @@
             height: 105%;
             cursor: pointer;
             opacity: 0;
+        }
+        .button_outer_pro {
+            border-radius: 30px;
+            text-align: center;
+            height: 50px;
+            width: 200px;
+            padding-top: 11px;
+            margin-top: -10px;
+            margin-left: -12px;
+            display: inline-block;
+            transition: .2s;
+            position: relative;
+            overflow: hidden;
         }
 
     </style>
@@ -237,6 +251,12 @@
                         <a class="nav-link" href="{{ route('product') }}">
                             <i class="menu-icon typcn typcn-shopping-bag"></i>
                             <span class="menu-title">Product</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('add-purchases') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Purchases</span>
                         </a>
                     </li>
                     <li class="nav-item">

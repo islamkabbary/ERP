@@ -64,9 +64,9 @@
                     <thead>
                         <tr class="text-center text-capitalize">
                             <th scope="col">#</th>
+                            <th scope="col">Product</th>
                             <th scope="col">unit price</th>
                             <th scope="col">qty</th>
-                            <th scope="col">Product</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                     </thead>
@@ -74,9 +74,9 @@
                         @forelse (\Modules\Product\app\Entities\Inventory::all() as $inventory)
                             <tr class="text-center text-capitalize">
                                 <th scope="row">{{ $inventory->id }}</th>
+                                {{-- <td>{{ $inventory->products ? $inventory->products->name : null }}</td> --}}
                                 <td>{{ $inventory->qty }}</td>
                                 <td>{{ $inventory->unit_price }}</td>
-                                {{-- <td>{{ $inventory->products ? $inventory->products->name : null }}</td> --}}
                                 <td><a class='btn btn-success btn-sm text-light' title='edit  {{ $inventory->key }}'
                                         wire:click='edit({{ $inventory->id }})' role='button'>Edit</a>
                                     <a class='btn btn-danger btn-sm text-light' title='delete  {{ $inventory->key }}'
@@ -84,7 +84,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <td colspan="7" class="text-success text-center"> There is no Inventory yet</td>
+                            <td colspan="9" class="text-success text-center"> There is no Product yet</td>
                         @endforelse
                     </tbody>
                 </table>

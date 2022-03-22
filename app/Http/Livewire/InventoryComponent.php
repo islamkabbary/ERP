@@ -10,13 +10,14 @@ class InventoryComponent extends Component
 {
     use WithPagination;
 
-    public $unit_price , $qty , $product_id , $inventory_id;
+    protected $listeners = ['newPurshes'];
+    public $unit_price, $qty, $product_id, $inventory_id;
 
     protected function rules()
     {
         return [
             'unit_price' => 'required|between:0,99.99',
-            'qty'=> 'required|integer',
+            'qty' => 'required|integer',
             'product_id' => 'required|integer|exists:products,id',
         ];
     }
@@ -26,11 +27,15 @@ class InventoryComponent extends Component
         return view('Product::inventory.inventory-component');
     }
 
+    public function newPurshes()
+    {
+        dd(123);
+    }
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [
             'unit_price' => 'nullable|between:0,99.99',
-            'qty'=> 'nullable|integer',
+            'qty' => 'nullable|integer',
             'product_id' => 'nullable|integer|exists:products,id',
         ]);
     }

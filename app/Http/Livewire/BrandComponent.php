@@ -38,6 +38,7 @@ class BrandComponent extends Component
             $brand = Brand::find($this->brand_id);
             $brand->name = $this->name;
             if ($this->logo) {
+                // dd($brand->image->path);
                 unlink('storage/' . $brand->image->path);
                 $brand->image()->delete();
                 $brand_logo = $this->logo->store("Brands-logos", 'public');

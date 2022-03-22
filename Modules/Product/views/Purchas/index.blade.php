@@ -1,7 +1,7 @@
 @extends('Product::layouts.index')
 @section('header')
-    All Products Table
+    Add Purchases
 @endsection
 @section('dashboard-layout')
-    @livewire('product-component')
+    @livewire('add-purchases-component')
 @endsection

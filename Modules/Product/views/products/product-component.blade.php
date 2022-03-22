@@ -106,15 +106,30 @@
             </div>
             {{-- End Description --}}
         </div>
-        <div class="col-lg-1 form-group">
-            <a type="button" wire:click="save" class="btn btn-success btn-block mt-5">Save</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Images</label>
+                <div class="button_outer_pro btn_upload bg-success cursor-pointer">
+                    <input type="file" wire:model='image' multiple>Upload Image
+                </div>
+                <div class="col-form-label ml-5">
+                    @error('image')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 form-group">
+            <a type="button" wire:click="save" class="btn btn-success btn-block">Save</a>
         </div>
     </div>
     <div class="row page-title-header">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-sm table-hover">
+                    <table class="table table-xl table-hover table-responsive-xl">
                         <thead>
                             <tr class="text-center text-capitalize">
                                 <th scope="col">#</th>
@@ -137,6 +152,12 @@
                                     <td>{{ $product->category ? $product->category->name : null }}</td>
                                     <td>{{ $product->brand ? $product->brand->name : null }}</td>
                                     <td>{{ $product->supplier ? $product->supplier->name : null }}</td>
+                                    @foreach($product->images as $image)
+                                        <td>
+                                            <img width="50" src="{{ url('storage/' . $image->path) }}"
+                                                class="img-fluid" alt="Product Logo">
+                                        <td>
+                                    @endforeach
                                     <td><a class='btn btn-success btn-sm text-light'
                                             title='edit  {{ $product->name }}'
                                             wire:click='edit({{ $product->id }})' role='button'>Edit</a>

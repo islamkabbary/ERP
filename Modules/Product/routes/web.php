@@ -7,6 +7,7 @@ use Modules\Product\app\HTTP\Controllers\CategoryController;
 use Modules\Product\app\HTTP\Controllers\CustomerController;
 use Modules\Product\app\HTTP\Controllers\InventoryController;
 use Modules\Product\app\HTTP\Controllers\ProductController;
+use Modules\Product\app\HTTP\Controllers\PurchasController;
 use Modules\Product\app\HTTP\Controllers\SupplierController;
 
 /*
@@ -33,3 +34,4 @@ Route::get('/supplier', [SupplierController::class , "index"])->name('supplier')
 Route::get('/option', [OptionController::class , "index"])->name('option');
 Route::get('/inventory', [InventoryController::class , "index"])->name('inventory');
 Route::get('/product', [ProductController::class , "index"])->name('product');
+Route::get('/add-purchases', [PurchasController::class , "create"])->name('add-purchases');

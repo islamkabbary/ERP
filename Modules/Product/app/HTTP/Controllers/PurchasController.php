@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Purchas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Purchas;
 
 class PurchasController extends Controller
 {
@@ -24,7 +24,7 @@ class PurchasController extends Controller
      */
     public function create()
     {
-        //
+        return view('Product::Purchas.index');
     }
 
     /**

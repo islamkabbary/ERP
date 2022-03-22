@@ -24,11 +24,11 @@ class islam extends FormRequest
     public function rules()
     {
         return [
-            'email'=> 'required|unique:custmors,email',
+            'email'=> 'required|unique:custmors,email|mimes:png,jpg',
             'name'=> 'required|string',
             'company_name'=> 'required',
             'phone' => 'required|max:20',
-            'product_id' => 'required|integer|exists:products,id'.request()->segment(3) . ',id',
+            'product_id' => 'required|integer|exists:products,id'.request()->segment(3) . ',id|in:installment,cash',
         ];
     }
 }
