@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Modules\Product\app\Entities\Product;
 
 class ProductComponent extends Component
@@ -13,7 +14,7 @@ class ProductComponent extends Component
     use WithFileUploads;
     use WithPagination;
 
-    public $name, $price, $dis, $product_id, $brand_id, $supplier_id, $category_id, $image;
+    public $name, $price, $dis, $product_id, $brand_id, $supplier_id, $category_id, $image ,$inventory_id;
 
     protected function rules()
     {
@@ -24,7 +25,7 @@ class ProductComponent extends Component
             'brand_id' => 'required|exists:brands,id|max:20',
             'supplier_id' => 'required|exists:suppliers,id|max:20',
             'category_id' => 'required|exists:categories,id|max:20',
-            'image' => 'required',
+            'image' => 'nullable',
         ];
     }
 
@@ -54,15 +55,16 @@ class ProductComponent extends Component
             $product->name = $this->name;
             if ($this->image) {
                 foreach ($product->images as $image) {
-                    unlink('storage/' . $image->path);
-                    $product->images()->delete();
+                        unlink('storage/' . $image->path);
                 }
+                $product->images()->delete();
                 foreach ($this->image as $image) {
                     $product_images = $image->store("Product-images", 'public');
                     $product->images()->create(['path' => $product_images, 'type' => 'image']);
+                    DB::commit();
                 }
             }
-            DB::commit();
+            $product->inventory_id = $this->inventory_id;
             $product->save();
             session()->flash('update', 'Product successfully update.');
             DB::rollback();
@@ -75,6 +77,7 @@ class ProductComponent extends Component
             $product->supplier_id = $this->supplier_id;
             $product->brand_id = $this->brand_id;
             $product->category_id = $this->category_id;
+            $product->inventory_id = $this->inventory_id;
             $product->save();
             foreach ($this->image as $image) {
                 $product_images = $image->store("Product-images", 'public');
@@ -95,10 +98,10 @@ class ProductComponent extends Component
                 unlink('storage/' . $image->path);
                 $image->delete();
             }
-        } else {
+        } elseif(count($product->images->pluck('path'))!==0) {
             unlink('storage/' . $product->images->pluck('path')[0]);
-            $product->images()->delete();
         }
+        $product->images()->delete();
         $product->destroy($product_id);
         session()->flash('delete', 'Product successfully delete.');
     }
@@ -113,6 +116,7 @@ class ProductComponent extends Component
         $this->supplier_id = $product->supplier_id;
         $this->brand_id = $product->brand_id;
         $this->category_id = $product->category_id;
+        $this->inventory_id = $product->inventory_id ;
         // dd($product->images);
         $this->image = $product->images;
     }
@@ -126,6 +130,6 @@ class ProductComponent extends Component
         $this->brand_id = null;
         $this->supplier_id = null;
         $this->image = null;
+        $this->inventory_id = null;
     }
 }
-// unlink('storage/' . $product->images->pluck('path')[0]);

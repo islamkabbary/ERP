@@ -49,6 +49,7 @@
             cursor: pointer;
             opacity: 0;
         }
+
         .button_outer_pro {
             border-radius: 30px;
             text-align: center;
@@ -56,7 +57,7 @@
             width: 200px;
             padding-top: 11px;
             margin-top: -10px;
-            margin-left: -12px;
+            margin-left: 30px;
             display: inline-block;
             transition: .2s;
             position: relative;
@@ -98,7 +99,7 @@
                             </a>
                             <a class="dropdown-item">
                                 <div class="flag-icon-holder">
-                                    <i class="flag-icon flag-icon-fr"></i>
+                                    <img src="{{ asset('images/egypt.png') }}">
                                 </div>Arabic
                             </a>
                         </div>

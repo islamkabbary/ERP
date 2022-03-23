@@ -35,24 +35,6 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-success">Product</label>
-                <div class="col-sm-9">
-                    <select class="form-control" wire:model="product_id">
-                        <option value="">Select Product</option>
-                        @forelse (\Modules\Product\app\Entities\Product::all() as $product)
-                            <option value="{{ $product->id }}">{{ $product->name }}</option>
-                        @empty
-                            <option value="">Empty</option>
-                        @endforelse
-                    </select>
-                    @error('product_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
         <div class="col-md-1">
             <a type="button" wire:click="save" class="btn bg-success btn-block rounded"> Save </a>
         </div>

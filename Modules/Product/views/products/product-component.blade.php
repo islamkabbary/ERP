@@ -108,7 +108,25 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-3">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-success">Inventory</label>
+                <div class="col-sm-9">
+                    <select class="form-control" wire:model="inventory">
+                        <option value="">Select Inventory</option>
+                        @forelse (\Modules\Product\app\Entities\Inventory::all() as $inventory)
+                            <option value="{{ $inventory->id }}">{{ $inventory->name }}</option>
+                        @empty
+                            <option value="">Empty</option>
+                        @endforelse
+                    </select>
+                    @error('inventory')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Images</label>
                 <div class="button_outer_pro btn_upload bg-success cursor-pointer">
@@ -139,6 +157,7 @@
                                 <th scope="col">category_id</th>
                                 <th scope="col">brand_id</th>
                                 <th scope="col">supplier_id</th>
+                                <th colspan="1">images</th>
                                 <th scope="col">&nbsp;</th>
                             </tr>
                         </thead>
@@ -152,12 +171,16 @@
                                     <td>{{ $product->category ? $product->category->name : null }}</td>
                                     <td>{{ $product->brand ? $product->brand->name : null }}</td>
                                     <td>{{ $product->supplier ? $product->supplier->name : null }}</td>
-                                    @foreach($product->images as $image)
-                                        <td>
-                                            <img width="50" src="{{ url('storage/' . $image->path) }}"
-                                                class="img-fluid" alt="Product Logo">
-                                        <td>
-                                    @endforeach
+                                    {{-- {{-- @foreach ($product->images as $image) --}}
+                                    {{-- {{dd(count($product->images)!=0)}} --}}
+                                    <td>
+                                        <img width="50"
+                                            src={{ count($product->images) != 0 ? url('storage/' . $product->images->pluck('path')) : '-' }}
+                                            class="img-fluid" alt="Product Logo">
+                                        {{-- <img width="50" src="{{ url('storage/' . $image->path) }}"
+                                                class="img-fluid" alt="Product Logo"> --}}
+                                    <td>
+                                        {{-- @endforeach --}}
                                     <td><a class='btn btn-success btn-sm text-light'
                                             title='edit  {{ $product->name }}'
                                             wire:click='edit({{ $product->id }})' role='button'>Edit</a>
@@ -167,7 +190,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <td colspan="8" class="text-success text-center"> There is no Product yet</td>
+                                <td colspan="9" class="text-success text-center"> There is no Product yet</td>
                             @endforelse
                         </tbody>
                     </table>

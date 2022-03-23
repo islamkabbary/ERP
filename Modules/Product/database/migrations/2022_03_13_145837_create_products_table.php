@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('brand_id')->constrained('brands');
+            $table->foreignId('inventory_id')->constrained('inventories');
             $table->timestamps();
         });
     }
