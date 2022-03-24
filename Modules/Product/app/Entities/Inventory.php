@@ -11,12 +11,11 @@ class Inventory extends Model
     use HasFactory;
 
     protected $filabell = [
-        'unit_price','qty','product_id'
+        'unit_price','qty'
     ];
 
     protected $cast = [
         'qty' => 'integer',
-        'product_id' => 'integer',
         'unit_price' => 'decimal',
     ];
 
@@ -27,6 +26,6 @@ class Inventory extends Model
      */
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class,'inventory_id','id');
     }
 }

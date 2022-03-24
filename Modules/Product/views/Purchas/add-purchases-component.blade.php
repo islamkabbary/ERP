@@ -50,7 +50,7 @@
             {{-- Price --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success text-capitalize">Price</label>
-                <div class="col-sm-9">
+                <div class="col-sm-9" id="islam">
                     <input type="number" placeholder="Price" class="form-control" wire:model='price' />
                     @error('price')
                         <span class="text-danger">{{ $message }}</span>
@@ -60,14 +60,16 @@
             {{-- End Price --}}
         </div>
     </div>
+    <div id="newRow"></div>
     <div class="row mt-5">
         <div class="col-lg-4">
             {{-- Type --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success">Type</label>
                 <div class="col-sm-9">
-                    <select class="form-control" wire:model="type">
-                        <option value="">Select Type</option>
+                    <select class="form-control" wire:model="type" name="water_supply" id="water_supply"
+                        onchange="disable('water_supply', 'w_s_other')">
+                        <option value="" id="roro">Select Type</option>
                         <option value="{{ 'cash' }}">{{ 'Cash' }}</option>
                         <option value="{{ 'installment' }}">{{ 'Installment' }}</option>
                     </select>
@@ -98,7 +100,15 @@
             </div>
             {{-- End Supplier --}}
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-2">
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label text-success"></div>
+                <div class="col-lg-9 form-group">
+                    <a type="button" class="btn btn-success btn-block" id="addRow">Add product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label text-success"></div>
                 <div class="col-lg-9 form-group">
@@ -108,3 +118,4 @@
         </div>
     </div>
 </div>
+{{-- <input type="number" class="form-control" id="display" style="visibility:hidden"> --}}

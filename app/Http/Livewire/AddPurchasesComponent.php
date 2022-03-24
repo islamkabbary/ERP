@@ -37,6 +37,7 @@ class AddPurchasesComponent extends Component
 
     public function save()
     {
+        dd($this->price);
         DB::beginTransaction();
         $purchas = new Purchas();
         $purchas->type = $this->type;

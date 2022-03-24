@@ -57,7 +57,7 @@
             width: 200px;
             padding-top: 11px;
             margin-top: -10px;
-            margin-left: 30px;
+            margin-left: -10px;
             display: inline-block;
             transition: .2s;
             position: relative;
@@ -338,8 +338,28 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('js/demo_1/dashboard.js') }}"></script>
+    <script>
+        < script type = "text/javascript"
+        src = "jquery-ui-1.10.0/tests/jquery-1.9.0.js" >
+    </script>
+    <script src="jquery-ui-1.10.0/ui/jquery-ui.js"></script>
+    <script>
+        $("#seeAnotherField").change(function() {
+            if ($(this).val() == "yes") {
+                $('#otherFieldDiv').show();
+                $('#otherField').attr('required', '');
+                $('#otherField').attr('data-error', 'This field is required.');
+            } else {
+                $('#otherFieldDiv').hide();
+                $('#otherField').removeAttr('required');
+                $('#otherField').removeAttr('data-error');
+            }
+        });
+    </script>
+    </script>
     <!-- End custom js for this page-->
     {{-- <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script> --}}
+    @yield('script')
     @livewireScripts()
 </body>
 

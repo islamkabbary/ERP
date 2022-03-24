@@ -108,25 +108,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-success">Inventory</label>
-                <div class="col-sm-9">
-                    <select class="form-control" wire:model="inventory">
-                        <option value="">Select Inventory</option>
-                        @forelse (\Modules\Product\app\Entities\Inventory::all() as $inventory)
-                            <option value="{{ $inventory->id }}">{{ $inventory->name }}</option>
-                        @empty
-                            <option value="">Empty</option>
-                        @endforelse
-                    </select>
-                    @error('inventory')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="col-5">
+        <div class="col-4">
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Images</label>
                 <div class="button_outer_pro btn_upload bg-success cursor-pointer">

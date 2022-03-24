@@ -14,7 +14,7 @@ class ProductComponent extends Component
     use WithFileUploads;
     use WithPagination;
 
-    public $name, $price, $dis, $product_id, $brand_id, $supplier_id, $category_id, $image ,$inventory_id;
+    public $name, $price, $dis, $product_id, $brand_id, $supplier_id, $category_id, $image, $inventory_id;
 
     protected function rules()
     {
@@ -55,7 +55,9 @@ class ProductComponent extends Component
             $product->name = $this->name;
             if ($this->image) {
                 foreach ($product->images as $image) {
+                    if (file_exists('storage/' . $image->path)) {
                         unlink('storage/' . $image->path);
+                    }
                 }
                 $product->images()->delete();
                 foreach ($this->image as $image) {
@@ -95,10 +97,12 @@ class ProductComponent extends Component
         $product = Product::find($product_id);
         if (count($product->images)) {
             foreach ($product->images as $image) {
-                unlink('storage/' . $image->path);
+                if(file_exists('storage/' . $image->path)){
+                    unlink('storage/' . $image->path);
+                }
                 $image->delete();
             }
-        } elseif(count($product->images->pluck('path'))!==0) {
+        } elseif (count($product->images->pluck('path')) !== 0 && file_exists('storage/' . $product->images->pluck('path'))) {
             unlink('storage/' . $product->images->pluck('path')[0]);
         }
         $product->images()->delete();
@@ -116,7 +120,7 @@ class ProductComponent extends Component
         $this->supplier_id = $product->supplier_id;
         $this->brand_id = $product->brand_id;
         $this->category_id = $product->category_id;
-        $this->inventory_id = $product->inventory_id ;
+        $this->inventory_id = $product->inventory_id;
         // dd($product->images);
         $this->image = $product->images;
     }

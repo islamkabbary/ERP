@@ -32,6 +32,15 @@ class Product extends Model
     }
 
     /**
+     * Get the inventory that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function inventory(): BelongsTo
+    {
+        return $this->belongsTo(Inventory::class,'id','inventory_id');
+    }
+    /**
      * Get the brand that owns the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
