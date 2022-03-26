@@ -18,7 +18,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success text-capitalize">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="Name" class="form-control" wire:model='name' />
+                    <input type="text" placeholder="Name" class="form-control" wire:model.lazy='name' />
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success text-capitalize mt-3">Price</label>
                 <div class="col-sm-9">
-                    <input type="number" placeholder="Price" class="form-control mt-3" wire:model='price' />
+                    <input type="number" placeholder="Price" class="form-control mt-3" wire:model.lazy='price' />
                     @error('price')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Brand</label>
                 <div class="col-sm-9">
-                    <select class="form-control" wire:model="brand_id">
+                    <select class="form-control" wire:model.lazy="brand_id">
                         <option value="">Select Brand</option>
                         @forelse (\Modules\Product\app\Entities\Brand::all() as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -60,7 +60,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize mt-3">Category</label>
                 <div class="col-sm-9">
-                    <select class="form-control mt-3" wire:model="category_id">
+                    <select class="form-control mt-3" wire:model.lazy="category_id">
                         <option value="">Select Category</option>
                         @forelse (\Modules\Product\app\Entities\Category::all() as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -80,7 +80,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Supplier</label>
                 <div class="col-sm-9">
-                    <select class="form-control" wire:model="supplier_id">
+                    <select class="form-control" wire:model.lazy="supplier_id">
                         <option value="">Select Supplier</option>
                         @forelse (\Modules\Product\app\Entities\Supplier::all() as $supplier)
                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -98,7 +98,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize mt-3">Description</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" wire:model='dis'></textarea>
+                    <textarea class="form-control" wire:model.lazy='dis'></textarea>
                     @error('dis')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -112,7 +112,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Images</label>
                 <div class="button_outer_pro btn_upload bg-success cursor-pointer">
-                    <input type="file" wire:model='image' multiple>Upload Image
+                    <input type="file" wire:model.lazy='image' multiple>Upload Image
                 </div>
                 <div class="col-form-label ml-5">
                     @error('image')

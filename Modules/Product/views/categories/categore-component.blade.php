@@ -61,7 +61,7 @@
                     <tbody>
                         @forelse (\Modules\Product\app\Entities\Category::all() as $cat)
                             <tr class="text-center">
-                                <th scope="row">{{ $cat->id }}</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $cat->name }}</td>
                                 <td>{{ $cat->parent ? $cat->parent->name : null}}</td>
                                 <td><a class='btn btn-success btn-sm text-light' title='edit  {{ $cat->name }}'

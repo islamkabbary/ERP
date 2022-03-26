@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('purchas', function (Blueprint $table) {
             $table->id();
             $table->decimal('total');
+            $table->decimal('cash');
+            $table->decimal('installment')->nullable();
             $table->enum('type',['cash','installment']);
             $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('user_id')->constrained('users');

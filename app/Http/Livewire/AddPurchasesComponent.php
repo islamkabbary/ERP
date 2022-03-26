@@ -12,28 +12,30 @@ use Modules\Product\app\Entities\PurchasDetails;
 
 class AddPurchasesComponent extends Component
 {
-    public $product_name, $purchas_id, $supplier_id, $type, $total, $installment , $total_price , $total_qty;
-    public $product_id;
-    public $price;
-    public $qty;
+    public $product_name, $purchas_id, $supplier_id, $type, $total, $cash, $product_id,$price,$qty;
+    public $updateMode = false;
     public $inputs = [];
-    public $i = 1;
+    public $i = 0;
 
-    protected function rules()
-    {
-        return [
+    protected $rules = [
             'price.0' => 'required',
-            'qty.0' => 'nullable',
+            'qty.0' => 'required',
             'product_id.0' => 'required|integer|exists:products,id',
-
             'price.*' => 'required',
-            'qty.*' => 'nullable',
+            'qty.*' => 'required',
             'product_id.*' => 'required|integer|exists:products,id',
-
             'type' => 'required|in:cash,installment',
             'supplier_id' => 'required|exists:suppliers,id|max:20',
         ];
-    }
+
+    protected $messages = [
+        'product_id.0.required' => 'The product id field is required.',
+        'price.0.required' => 'The price field is required.',
+        'qty.0.required' => 'The qty field is required.',
+        'product_id.*.required' => 'The product id field is required.',
+        'price.*.required' => 'The price field is required.',
+        'qty.*.required' => 'The qty field is required.',
+    ];
 
     public function render()
     {
@@ -43,7 +45,7 @@ class AddPurchasesComponent extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [
-            'installment' => 'required'
+            'cash' => 'required'
         ]);
         $this->type;
     }
@@ -68,17 +70,18 @@ class AddPurchasesComponent extends Component
         $purchas->type = $this->type;
         $purchas->user_id = Auth::id();
         $purchas->supplier_id = $this->supplier_id;
-
-        foreach ($this->price as $price) {
-            $this->total_price += $price;
-        }
-        foreach ($this->qty as $qty) {
-            $this->total_qty += $qty;
-        }
-        $purchas->total = $this->total_price * $this->total_qty;
+        // $purchas->total = $total_price * $total_qty;
+        // dd($total_price);
+        // if($this->type == "cash"){
+        //     $purchas->cash = $total_price * $total_qty;
+        // }
+        // else{
+        //     $purchas->cash = $this->cash;
+        //     $purchas->installment = ($total_price * $total_qty) - $purchas->cash;
+        // }
         $purchas->save();
 
-        foreach ($this->product_id as $key =>$value) {
+        foreach ($this->product_id as $key => $value) {
             $purchas_detalis = new PurchasDetails();
             $purchas_detalis->purchas_id = $purchas->id;
             $purchas_detalis->product_id = $this->product_id[$key];
