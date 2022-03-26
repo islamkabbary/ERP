@@ -14,16 +14,14 @@ class addPurshesInInventoryEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $purchas;
     public $purchas_detalis;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($purchas,$purchas_detalis)
+    public function __construct($purchas_detalis)
     {
-        $this->purchas = $purchas;
         $this->purchas_detalis = $purchas_detalis;
     }
 

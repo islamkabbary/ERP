@@ -12,13 +12,13 @@
             {{ session('update') }}
         </div>
     @endif
-    <div class="row mt-5">
+    {{-- @for ($i = 0; $i <= $steps; $i++) --}}
+    <div class="row mt-5 newRow">
         <div class="col-lg-4">
-            {{-- Product Name --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success">Product</label>
                 <div class="col-sm-9">
-                    <select class="form-control" wire:model="product_id">
+                    <select class="form-control" wire:model="product_id.0">
                         <option value="">Select Product</option>
                         @forelse (\Modules\Product\app\Entities\Product::all() as $product)
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -26,50 +26,93 @@
                             <option value="">Empty</option>
                         @endforelse
                     </select>
-                    @error('product_id')
+                    @error('product_id.0')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-            {{-- End Name Product --}}
         </div>
         <div class="col-lg-4">
-            {{-- Quantity --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success text-capitalize">Quantity</label>
                 <div class="col-sm-9">
-                    <input type="number" placeholder="Quantity" class="form-control" wire:model='qty' />
-                    @error('qty')
+                    <input type="number" placeholder="Quantity" class="form-control" wire:model='qty.0' />
+                    @error('qty.0')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-            {{-- End Quantity --}}
         </div>
         <div class="col-lg-4">
-            {{-- Price --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success text-capitalize">Price</label>
-                <div class="col-sm-9" id="islam">
-                    <input type="number" placeholder="Price" class="form-control" wire:model='price' />
-                    @error('price')
+                <div class="col-sm-9">
+                    <input type="number" placeholder="Price" class="form-control" wire:model='price.0' />
+                    @error('price.0')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-            {{-- End Price --}}
         </div>
     </div>
-    <div id="newRow"></div>
+    @foreach ($inputs as $key => $value)
+        <div class="row mt-5 newRow">
+            <div class="col-lg-4">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-success">Product</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" wire:model="product_id.{{ $value }}">
+                            <option value="">Select Product</option>
+                            @forelse (\Modules\Product\app\Entities\Product::all() as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @empty
+                                <option value="">Empty</option>
+                            @endforelse
+                        </select>
+                        @error('product_id.{{ $value }}')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-success text-capitalize">Quantity</label>
+                    <div class="col-sm-9">
+                        <input type="number" placeholder="Quantity" class="form-control"
+                            wire:model='qty.{{ $value }}' />
+                        @error('qty.{{ $value }}')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-success text-capitalize">Price</label>
+                    <div class="col-sm-9">
+                        <input type="number" placeholder="Price" class="form-control"
+                            wire:model='price.{{ $value }}' />
+                        @error('price.{{ $value }}')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{ $key }})">Remove</button>
+            </div>
+        </div>
+    @endforeach
+
+    {{-- @endfor --}}
     <div class="row mt-5">
         <div class="col-lg-4">
-            {{-- Type --}}
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-success">Type</label>
                 <div class="col-sm-9">
-                    <select class="form-control" wire:model="type" name="water_supply" id="water_supply"
-                        onchange="disable('water_supply', 'w_s_other')">
-                        <option value="" id="roro">Select Type</option>
+                    <select class="form-control" wire:model="type">
+                        <option value="">Select Type</option>
                         <option value="{{ 'cash' }}">{{ 'Cash' }}</option>
                         <option value="{{ 'installment' }}">{{ 'Installment' }}</option>
                     </select>
@@ -78,10 +121,21 @@
                     @enderror
                 </div>
             </div>
-            {{-- End Type --}}
         </div>
+        @if ($type == 'installment')
         <div class="col-lg-4">
-            {{-- Supplier --}}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-success text-capitalize">Installment</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="display" wire:model="installment">
+                    @error('installment')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    @endif
+        <div class="col-lg-4">
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label rounded text-success text-capitalize">Supplier</label>
                 <div class="col-sm-9">
@@ -98,13 +152,13 @@
                     @enderror
                 </div>
             </div>
-            {{-- End Supplier --}}
         </div>
         <div class="col-lg-2">
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label text-success"></div>
                 <div class="col-lg-9 form-group">
-                    <a type="button" class="btn btn-success btn-block" id="addRow">Add product</a>
+                    <a type="button" class="btn btn-success btn-block add_button"
+                        wire:click.prevent="add({{ $i }})">Add product</a>
                 </div>
             </div>
         </div>
@@ -117,5 +171,19 @@
             </div>
         </div>
     </div>
+    {{-- <div class="row mt-5">
+        @if ($type == 'installment')
+            <div class="col-lg-4">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-success text-capitalize">Installment</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="display" wire:model="installment">
+                        @error('installment')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div> --}}
 </div>
-{{-- <input type="number" class="form-control" id="display" style="visibility:hidden"> --}}

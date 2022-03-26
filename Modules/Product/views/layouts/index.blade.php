@@ -5,23 +5,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
-    <!-- plugins:css -->
+    <title>ERB System</title>
     <link rel="stylesheet" href="{{ asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/iconfonts/ionicons/dist/css/ionicons.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.addons.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"> --}}
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('css/shared/style.css') }}">
-    <!-- endinject -->
-    <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('css/demo_1/style.css') }}">
-    <!-- End Layout styles -->
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <style>
         .button_outer {
@@ -65,18 +56,19 @@
         }
 
     </style>
+    @yield('style')
     @livewireStyles()
 </head>
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                 <a class="navbar-brand brand-logo" href="">
-                    <img src={{ asset('images/logo.svg alt="logo"') }} /> </a>
+                    <img src={{ asset('images/erp-logo-png-Transparent-Images.png') }} height="90px" alt="logo" />
+                </a>
                 <a class="navbar-brand brand-logo-mini">
-                    <img src="{{ asset('images/logo-mini.svg') }}" alt="logo" /></a>
+                    <img src="{{ asset('images/erp-logo-png-Transparent-Images.png') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
                 <ul class="navbar-nav">
@@ -343,19 +335,6 @@
         src = "jquery-ui-1.10.0/tests/jquery-1.9.0.js" >
     </script>
     <script src="jquery-ui-1.10.0/ui/jquery-ui.js"></script>
-    <script>
-        $("#seeAnotherField").change(function() {
-            if ($(this).val() == "yes") {
-                $('#otherFieldDiv').show();
-                $('#otherField').attr('required', '');
-                $('#otherField').attr('data-error', 'This field is required.');
-            } else {
-                $('#otherFieldDiv').hide();
-                $('#otherField').removeAttr('required');
-                $('#otherField').removeAttr('data-error');
-            }
-        });
-    </script>
     </script>
     <!-- End custom js for this page-->
     {{-- <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script> --}}

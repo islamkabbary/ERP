@@ -24,7 +24,8 @@ class islam extends FormRequest
     public function rules()
     {
         return [
-            'email'=> 'required|unique:custmors,email|mimes:png,jpg',
+            // 'phone' => ['required'|'max:20',Rule::unique('customers', 'phone')->ignore($this->phone)],
+            'email'=> 'required|unique:custmors,email|mimes:png,jpg|numeric',
             'name'=> 'required|string',
             'company_name'=> 'required',
             'phone' => 'required|max:20',

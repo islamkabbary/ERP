@@ -27,10 +27,6 @@ class InventoryComponent extends Component
         return view('Product::inventory.inventory-component');
     }
 
-    public function newPurshes()
-    {
-        dd(123);
-    }
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [

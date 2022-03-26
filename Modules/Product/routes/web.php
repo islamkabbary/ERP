@@ -26,12 +26,13 @@ use Modules\Product\app\HTTP\Controllers\SupplierController;
 Route::get('/index', function () {
     return view('Product::layouts.index');
 })->name('dash');
-
-Route::get('/category', [CategoryController::class, "index"])->name('category');
-Route::get('/brand', [BrandController::class , "index"])->name('brand');
-Route::get('/customer', [CustomerController::class , "index"])->name('customer');
-Route::get('/supplier', [SupplierController::class , "index"])->name('supplier');
-Route::get('/option', [OptionController::class , "index"])->name('option');
-Route::get('/inventory', [InventoryController::class , "index"])->name('inventory');
-Route::get('/product', [ProductController::class , "index"])->name('product');
-Route::get('/add-purchases', [PurchasController::class , "create"])->name('add-purchases');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/category', [CategoryController::class, "index"])->name('category');
+    Route::get('/brand', [BrandController::class, "index"])->name('brand');
+    Route::get('/customer', [CustomerController::class, "index"])->name('customer');
+    Route::get('/supplier', [SupplierController::class, "index"])->name('supplier');
+    Route::get('/option', [OptionController::class, "index"])->name('option');
+    Route::get('/inventory', [InventoryController::class, "index"])->name('inventory');
+    Route::get('/product', [ProductController::class, "index"])->name('product');
+    Route::get('/add-purchases', [PurchasController::class, "create"])->name('add-purchases');
+});
