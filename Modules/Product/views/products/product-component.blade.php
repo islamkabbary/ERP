@@ -146,7 +146,7 @@
                         <tbody>
                             @forelse (\Modules\Product\app\Entities\Product::all() as $product)
                                 <tr class="text-center text-capitalize">
-                                    <th scope="row">{{ $product->id }}</th>
+                                    <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->dis }}</td>

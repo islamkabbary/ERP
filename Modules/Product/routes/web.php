@@ -35,4 +35,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/inventory', [InventoryController::class, "index"])->name('inventory');
     Route::get('/product', [ProductController::class, "index"])->name('product');
     Route::get('/add-purchases', [PurchasController::class, "create"])->name('add-purchases');
+    Route::get('/show-purchases', [PurchasController::class, "index"])->name('show-purchases');
+    Route::get('/edit-purchases/{id}', [PurchasController::class, "edit"])->name('edit-purchases');
 });

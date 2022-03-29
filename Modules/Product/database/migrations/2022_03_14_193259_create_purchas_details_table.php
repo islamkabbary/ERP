@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->decimal('total_product');
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('purchas_id')->constrained('purchas');
+            $table->foreignId('purchas_id')->constrained('purchas')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

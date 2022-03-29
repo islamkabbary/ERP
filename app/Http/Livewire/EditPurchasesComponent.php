@@ -5,29 +5,23 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Events\addPurshesInInventoryEvent;
 use Modules\Product\app\Entities\Product;
 use Modules\Product\app\Entities\Purchas;
+use App\Events\addPurshesInInventoryEvent;
 use Modules\Product\app\Entities\PurchasDetails;
 
-class AddPurchasesComponent extends Component
+class EditPurchasesComponent extends Component
 {
     public $product_name, $purchas_id, $supplier_id, $type, $cash, $product_id,$price,$qty;
     public $updateMode = false;
     public $inputs = [];
     public $i = 0;
-
+    public $edit_purchas;
+    
     public function render()
     {
-        return view('Product::Purchas.add-purchases-component');
-    }
-
-    public function updated($propertyName)
-    {
-        $this->type;
-        $this->validateOnly($propertyName, [
-            'cash' => 'required'
-        ]);
+        $purchas = Purchas::find($this->edit_purchas)->first();
+        return view('Product::Purchas.edit-purchases-component')->with(compact("purchas"));
     }
 
     public function add($i)
@@ -44,6 +38,7 @@ class AddPurchasesComponent extends Component
 
     public function save()
     {
+        dd($this->type);
         $validatedData = $this->validate([
             'price.0' => 'required',
             'qty.0' => 'required',
@@ -72,6 +67,7 @@ class AddPurchasesComponent extends Component
         for($i=0;$i<count($this->price);$i++){
             $total[] = $this->price[$i] * $this->qty[$i];
         }
+        dd($total);
         $purchas->total = array_sum($total);
         if($this->type == "cash"){
             $purchas->cash = $purchas->total;

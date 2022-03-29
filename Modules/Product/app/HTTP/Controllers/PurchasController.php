@@ -14,7 +14,7 @@ class PurchasController extends Controller
      */
     public function index()
     {
-        //
+        return view('Product::Purchas.indexShow');
     }
 
     /**
@@ -55,9 +55,10 @@ class PurchasController extends Controller
      * @param  \App\Models\Purchas  $purchas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Purchas $purchas)
+    public function edit($id)
     {
-        //
+        $purchas = Purchas::findOrFail($id);
+        return view("Product::Purchas.indexEdit",compact('purchas'));
     }
 
     /**
