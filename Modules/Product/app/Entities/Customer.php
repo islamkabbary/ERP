@@ -9,6 +9,7 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $table = 'customers';
     protected $filablle = [
         'name','email','addres','phone','company_name'
     ];

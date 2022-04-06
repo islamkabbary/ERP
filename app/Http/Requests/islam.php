@@ -25,7 +25,9 @@ class islam extends FormRequest
     {
         return [
             // 'phone' => ['required'|'max:20',Rule::unique('customers', 'phone')->ignore($this->phone)],
+            'customer_id' => 'required_if:type,installment|exists:customers,id',
             'email'=> 'required|unique:custmors,email|mimes:png,jpg|numeric',
+            'email'=> 'required_if:type,installment',
             'name'=> 'required|string',
             'company_name'=> 'required',
             'phone' => 'required|max:20',

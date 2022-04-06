@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->decimal('total');
+            $table->float('cash');
+            $table->float('installment')->nullable();
             $table->enum('type',['cash','installment']);
-            $table->foreignId('custmor_id')->constrained('customers');
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

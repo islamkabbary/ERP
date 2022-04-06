@@ -10,7 +10,7 @@ class CustomerComponent extends Component
 {
     use WithPagination;
 
-    public $name , $company_name , $email , $adress , $phone ;
+    public $name , $company_name , $email , $addres , $phone ;
     public $customer_id;
 
     protected function rules()
@@ -19,7 +19,7 @@ class CustomerComponent extends Component
             'name'=> 'required|string',
             'company_name' => 'required',
             'email'=> 'required|unique:customers,email',
-            'adress' => 'required',
+            'addres' => 'required',
             'phone' => 'required|unique:customers,phone|max:20',
         ];
     }
@@ -36,7 +36,7 @@ class CustomerComponent extends Component
             'phone' => 'nullable|unique:customers,phone|max:20',
             'name'=> 'nullable|string',
             'company_name' => 'nullable',
-            'adress' => 'nullable',
+            'addres' => 'nullable',
         ]);
     }
 
@@ -52,7 +52,7 @@ class CustomerComponent extends Component
         $customer->name = $this->name;
         $customer->company_name = $this->company_name;
         $customer->email = $this->email;
-        $customer->adress = $this->adress;
+        $customer->addres = $this->addres;
         $customer->phone = $this->phone;
         $customer->save();
         session()->flash('update', 'Custmor successfully update.');
@@ -72,7 +72,7 @@ class CustomerComponent extends Component
         $this->name = $custmor->name;
         $this->company_name = $custmor->company_name;
         $this->email = $custmor->email;
-        $this->adress = $custmor->adress;
+        $this->addres = $custmor->addres;
         $this->phone = $custmor->phone;
     }
 
@@ -81,7 +81,7 @@ class CustomerComponent extends Component
         $this->name = null;
         $this->company_name = null;
         $this->email = null;
-        $this->adress = null;
+        $this->addres = null;
         $this->phone = null;
     }
 }

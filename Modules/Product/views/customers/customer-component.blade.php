@@ -18,7 +18,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" wire:model='name' />
+                    <input type="text" class="form-control" wire:model.lazy='name' />
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Phone</label>
                 <div class="col-sm-8">
-                    <input type="tel" class="form-control" wire:model='phone' />
+                    <input type="tel" class="form-control" wire:model.lazy='phone' />
                     @error('phone')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" wire:model='email' />
+                    <input type="email" class="form-control" wire:model.lazy='email' />
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -53,7 +53,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Company Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" wire:model='company_name' />
+                    <input type="text" class="form-control" wire:model.lazy='company_name' />
                     @error('company_name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -66,8 +66,8 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Address</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" wire:model='adress' />
-                    @error('adress')
+                    <input type="text" class="form-control" wire:model.lazy='addres' />
+                    @error('addres')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <a type="button" wire:click="save" class="btn btn-success btn-block mt-3">Save</a>
@@ -99,7 +99,7 @@
                                     <td>{{ $custmor->name }}</td>
                                     <td>{{ $custmor->email }}</td>
                                     <td>{{ $custmor->phone }}</td>
-                                    <td>{{ $custmor->adress }}</td>
+                                    <td>{{ $custmor->addres }}</td>
                                     <td>{{ $custmor->company_name }}</td>
                                     <td><a class='btn btn-success btn-sm text-light'
                                             title='edit  {{ $custmor->name }}'

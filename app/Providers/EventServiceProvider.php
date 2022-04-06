@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Events\addPurshesInInventoryEvent;
 use App\Listeners\addPurshesInInventoryListener;
+use App\Events\removeProductOrderInInInventoryEvent;
+use App\Listeners\removeProductOrderInInInventoryListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -16,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         addPurshesInInventoryEvent::class => [
             addPurshesInInventoryListener::class,
+        ],
+        removeProductOrderInInInventoryEvent::class => [
+            removeProductOrderInInInventoryListener::class,
         ],
     ];
 

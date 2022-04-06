@@ -15,6 +15,89 @@
     <link rel="stylesheet" href="{{ asset('css/demo_1/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <style>
+        .card {
+            margin: auto;
+            width: 320px;
+            max-width: 600px;
+            border-radius: 20px
+        }
+
+        .mt-50 {
+            margin-top: 50px
+        }
+
+        .mb-50 {
+            margin-bottom: 50px
+        }
+
+        @media(max-width:767px) {
+            .card {
+                width: 80%
+            }
+        }
+
+        @media(height:1366px) {
+            .card {
+                width: 75%
+            }
+        }
+
+        #orderno {
+            padding: 1vh 2vh 0;
+            font-size: smaller
+        }
+
+        .title {
+            display: flex;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 12%
+        }
+
+        .main {
+            padding: 0 2rem
+        }
+
+        .main img {
+            border-radius: 7px
+        }
+
+        .main p {
+            margin-bottom: 0;
+            font-size: 0.75rem
+        }
+
+        #sub-title p {
+            margin: 1vh 0 2vh 0;
+            font-size: 1rem
+        }
+
+        .row-main {
+            padding: 1.5vh 0;
+            align-items: center
+        }
+
+        hr {
+            margin: 1rem -1vh;
+            border-top: 1px solid rgb(214, 214, 214)
+        }
+
+        .total {
+            font-size: 1rem
+        }
+
+        @media(height: 1366px) {
+            .main p {
+                margin-bottom: 0;
+                font-size: 1.2rem
+            }
+
+            .total {
+                font-size: 1.5rem
+            }
+        }
+
         .button_outer {
             border-radius: 30px;
             text-align: center;
@@ -253,6 +336,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('create-order') }}">
+                            <i class="menu-icon typcn typcn-shopping-bag"></i>
+                            <span class="menu-title">Order</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('category') }}">
                             <i class="menu-icon typcn typcn-shopping-bag"></i>
                             <span class="menu-title">Categories</span>
@@ -319,7 +408,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    {{-- <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('vendors/js/vendor.bundle.addons.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
@@ -330,14 +419,13 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('js/demo_1/dashboard.js') }}"></script>
-    <script>
+    {{-- <script>
         < script type = "text/javascript"
         src = "jquery-ui-1.10.0/tests/jquery-1.9.0.js" >
-    </script>
-    <script src="jquery-ui-1.10.0/ui/jquery-ui.js"></script>
-    </script>
+    </script> --}}
+    {{-- <script src="jquery-ui-1.10.0/ui/jquery-ui.js"></script> --}}
     <!-- End custom js for this page-->
-    <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script> --}}
+    {{-- <script src="{{ asset('js/shared/jquery.cookie.js') }}" type="text/javascript"></script> --}}
     @yield('script')
     @livewireScripts()
 </body>

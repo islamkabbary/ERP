@@ -29,12 +29,18 @@ class addPurshesInInventoryListener
         try {
             $pro = Product::findOrFail($event->purchas_detalis->product_id);
             $inv = Inventory::where('id', $pro->inventory_id)->first();
-            if ($inv) {
+            if ($inv && $inv->qty != 0) {
                 $inv->unit_price = ($inv->unit_price + $event->purchas_detalis->price) / 2;
                 $inv->qty = $inv->qty + $event->purchas_detalis->qty;
                 $inv->save();
-            } else {
+            }elseif($inv && $inv->qty == 0){
+                $inv->unit_price = $event->purchas_detalis->price;
+                $inv->qty = $event->purchas_detalis->qty;
+                $inv->save();
+            }
+            else {
                 $productInInventory = new Inventory();
+                $productInInventory->product_name    = $event->purchas_detalis->product_name;
                 $productInInventory->unit_price    = $event->purchas_detalis->price;
                 $productInInventory->qty    = $event->purchas_detalis->qty;
                 $productInInventory->save();

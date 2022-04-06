@@ -39,7 +39,10 @@ class AddPurchasesComponent extends Component
 
     public function remove($i)
     {
+        unset($this->product_id[$i]);
         unset($this->inputs[$i]);
+        unset($this->price[$i]);
+        unset($this->qty[$i]);
     }
 
     public function save()
@@ -52,10 +55,11 @@ class AddPurchasesComponent extends Component
             'qty.*' => 'required',
             'product_id.*' => 'required|integer|exists:products,id',
             'type' => 'required|in:cash,installment',
-            'supplier_id' => 'required|exists:suppliers,id|max:20',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'cash' => 'required_if:type,installment',
         ],
         [
-            'product_id.0.required' => 'The product id field is required.',
+            'product_id.0.required' => 'The product field is required.',
             'price.0.required' => 'The price field is required.',
             'qty.0.required' => 'The qty field is required.',
             'product_id.*.required' => 'The product id field is required.',

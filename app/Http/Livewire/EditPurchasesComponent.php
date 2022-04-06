@@ -12,12 +12,12 @@ use Modules\Product\app\Entities\PurchasDetails;
 
 class EditPurchasesComponent extends Component
 {
-    public $product_name, $purchas_id, $supplier_id, $type, $cash, $product_id,$price,$qty;
+    public $product_name, $purchas_id, $supplier_id, $type, $cash, $product_id, $price, $qty;
     public $updateMode = false;
     public $inputs = [];
     public $i = 0;
     public $edit_purchas;
-    
+
     public function render()
     {
         $purchas = Purchas::find($this->edit_purchas)->first();
@@ -39,40 +39,40 @@ class EditPurchasesComponent extends Component
     public function save()
     {
         dd($this->type);
-        $validatedData = $this->validate([
-            'price.0' => 'required',
-            'qty.0' => 'required',
-            'product_id.0' => 'required|integer|exists:products,id',
-            'price.*' => 'required',
-            'qty.*' => 'required',
-            'product_id.*' => 'required|integer|exists:products,id',
-            'type' => 'required|in:cash,installment',
-            'supplier_id' => 'required|exists:suppliers,id|max:20',
-        ],
-        [
-            'product_id.0.required' => 'The product id field is required.',
-            'price.0.required' => 'The price field is required.',
-            'qty.0.required' => 'The qty field is required.',
-            'product_id.*.required' => 'The product id field is required.',
-            'price.*.required' => 'The price field is required.',
-            'qty.*.required' => 'The qty field is required.',
-        ]
-    );
+        $validatedData = $this->validate(
+            [
+                'price.0' => 'required',
+                'qty.0' => 'required',
+                'product_id.0' => 'required|integer|exists:products,id',
+                'price.*' => 'required',
+                'qty.*' => 'required',
+                'product_id.*' => 'required|integer|exists:products,id',
+                'type' => 'required|in:cash,installment',
+                'supplier_id' => 'required|exists:suppliers,id|max:20',
+            ],
+            [
+                'product_id.0.required' => 'The product id field is required.',
+                'price.0.required' => 'The price field is required.',
+                'qty.0.required' => 'The qty field is required.',
+                'product_id.*.required' => 'The product id field is required.',
+                'price.*.required' => 'The price field is required.',
+                'qty.*.required' => 'The qty field is required.',
+            ]
+        );
         DB::beginTransaction();
         $purchas = new Purchas();
         $purchas->type = $this->type;
         $purchas->user_id = Auth::id();
         $purchas->supplier_id = $this->supplier_id;
         $total = [];
-        for($i=0;$i<count($this->price);$i++){
+        for ($i = 0; $i < count($this->price); $i++) {
             $total[] = $this->price[$i] * $this->qty[$i];
         }
         dd($total);
         $purchas->total = array_sum($total);
-        if($this->type == "cash"){
+        if ($this->type == "cash") {
             $purchas->cash = $purchas->total;
-        }
-        else{
+        } else {
             $purchas->cash = $this->cash;
             $purchas->installment = $purchas->total - $purchas->cash;
         }
@@ -93,6 +93,17 @@ class EditPurchasesComponent extends Component
         session()->flash('create', 'Purchas successfully create.');
         DB::rollback();
         $this->clear();
+    }
+
+    function edit()
+    {
+        $purchas = Purchas::find($this->edit_purchas)->first();
+        foreach ($purchas->purchasDetails as $key => $value) {
+            $this->product_name = $value->product_name;
+            $this->price = $value->price;
+            $this->qty = $value->qty;
+        }
+        dd($this->product_name);
     }
 
     function clear()

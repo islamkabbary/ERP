@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('refunds', function (Blueprint $table) {
             $table->id();
-            $table->decimal('price');
+            $table->float('price');
             $table->integer('qty');
             $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('product_id')->constrained('products');

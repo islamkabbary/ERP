@@ -1,9 +1,10 @@
 <?php
 
 namespace Modules\Product\app\HTTP\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Product\app\Entities\Order;
+use Modules\Product\app\Entities\OrderDetails;
 
 class OrderController extends Controller
 {
@@ -24,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('Product::order.index');
     }
 
     /**
@@ -44,9 +45,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('Product::order.show-detalis',compact('order'));
     }
 
     /**

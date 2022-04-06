@@ -22,4 +22,13 @@ class ShowPurchasesComponent extends Component
         Purchas::destroy($purchas_id);
         session()->flash('delete', 'Purchas successfully delete.');
     }
+
+
+    // function edit($edit_purchas)
+    // {
+    //     $cat = Purchas::find($edit_purchas);
+    //     $this->main_id = $cat->id;
+    //     $this->name = $cat->name;
+    //     $this->category_id = $cat->category_id;
+    // }
 }

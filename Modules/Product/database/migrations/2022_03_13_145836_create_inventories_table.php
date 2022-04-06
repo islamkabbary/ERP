@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
+            $table->string('product_name');
             $table->decimal('unit_price');
             $table->integer('qty');
             $table->timestamps();

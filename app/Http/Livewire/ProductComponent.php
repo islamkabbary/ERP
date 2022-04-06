@@ -81,9 +81,11 @@ class ProductComponent extends Component
             $product->category_id = $this->category_id;
             $product->inventory_id = $this->inventory_id;
             $product->save();
-            foreach ($this->image as $image) {
-                $product_images = $image->store("Product-images", 'public');
-                $product->images()->create(['path' => $product_images, 'type' => 'image']);
+            if (is_array($this->image)) {
+                foreach ($this->image as $image) {
+                    $product_images = $image->store("Product-images", 'public');
+                    $product->images()->create(['path' => $product_images, 'type' => 'image']);
+                }
             }
             DB::commit();
             session()->flash('create', 'Product successfully create.');
@@ -97,7 +99,7 @@ class ProductComponent extends Component
         $product = Product::find($product_id);
         if (count($product->images)) {
             foreach ($product->images as $image) {
-                if(file_exists('storage/' . $image->path)){
+                if (file_exists('storage/' . $image->path)) {
                     unlink('storage/' . $image->path);
                 }
                 $image->delete();
